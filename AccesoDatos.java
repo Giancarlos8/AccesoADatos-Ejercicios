@@ -24,7 +24,7 @@ public class AccesoDatos {
             "img/imagen.png"
         };
 
-        System.out.println("=== CREACIÓN DE DIRECTORIOS ===");
+        System.out.println("CREACIÓN DE DIRECTORIOS");
         for (String carpeta : carpetas) {
             Path rutaCarpeta = baseDir.resolve(carpeta);
             try {
@@ -39,12 +39,11 @@ public class AccesoDatos {
             }
         }
 
-        System.out.println("\n=== CREACIÓN DE FICHEROS ===");
+        System.out.println("\nCREACIÓN DE FICHEROS");
         for (String fichero : ficheros) {
             Path rutaFichero = baseDir.resolve(fichero);
             try {
                 if (!Files.exists(rutaFichero)) {
-                    // Asegura que los directorios padres existan antes de crear el archivo
                     if (rutaFichero.getParent() != null && !Files.exists(rutaFichero.getParent())) {
                         Files.createDirectories(rutaFichero.getParent());
                     }
@@ -58,7 +57,7 @@ public class AccesoDatos {
             }
         }
 
-        System.out.println("\n=== ESTRUCTURA DEL PROYECTO (DIRECTORIOS Y SUBDIRECTORIOS) ===");
+        System.out.println("\nESTRUCTURA DEL PROYECTO (DIRECTORIOS Y SUBDIRECTORIOS)");
         try (Stream<Path> stream = Files.walk(baseDir)) {
             stream.forEach(path -> {
                 String tipo = Files.isDirectory(path) ? "[DIR] " : "[FILE]";
